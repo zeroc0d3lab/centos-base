@@ -39,5 +39,7 @@ RUN ["ln", "-s", "/usr/bin/sh", "/bin/sh"]
 
 COPY rootfs/ /
 
+EXPOSE 22
+
 VOLUME ["/sys/fs/cgroup"]
 CMD ["/usr/sbin/init"]
