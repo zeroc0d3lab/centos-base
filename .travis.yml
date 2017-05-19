@@ -2,6 +2,9 @@ language: bash
 
 sudo: required
 
+jdk:
+  - oraclejdk8
+
 services:
   - docker
 
@@ -11,9 +14,11 @@ env:
     - REPO=centos-base
     - CGO_ENABLED=0
     - GOOS=linux
-    - GOARCH=amd64  
+    - GOARCH=amd64
+    - JAVA_HOME=
 
 before_install:
+  - export JAVA_HOME=/usr/lib/jvm/java-8-oracle
   - sudo chmod +x ./tests/docker_tests.sh  
   - sudo apt-get update
   - sudo apt-get install -y maven
