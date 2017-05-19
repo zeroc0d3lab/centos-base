@@ -1,9 +1,8 @@
 language: bash
 
-sudo: required
+dist: trusty
 
-jdk:
-  - java-7-openjdk-amd64
+sudo: required
 
 services:
   - docker
@@ -15,19 +14,13 @@ env:
     - CGO_ENABLED=0
     - GOOS=linux
     - GOARCH=amd64
-    - JAVA_HOME=
 
 before_install:
-  - export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
   - sudo chmod +x ./tests/docker_tests.sh  
   - sudo apt-get update
-  - sudo apt-get install -y maven
   - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-engine
   - echo 'DOCKER_OPTS="-H tcp://127.0.0.1:2375 -H unix:///var/run/docker.sock -s devicemapper"' | sudo tee /etc/default/docker > /dev/null
   - sudo service docker restart
   - sleep 5
-
-install: 
-  - travis_wait 30 mvn install
 
 script: ./tests/docker_tests.sh  
