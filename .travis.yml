@@ -21,6 +21,8 @@ before_install:
   - sudo service docker restart
   - sleep 5
 
-install: travis_wait 30 mvn install
+install: 
+  - mvn dependency:resolve
+  - travis_wait 30 mvn install
 
 script: ./tests/docker_tests.sh  
