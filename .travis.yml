@@ -3,7 +3,7 @@ language: bash
 sudo: required
 
 jdk:
-  - oraclejdk8
+  - java-7-openjdk-amd64
 
 services:
   - docker
@@ -18,7 +18,7 @@ env:
     - JAVA_HOME=
 
 before_install:
-  - export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+  - export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
   - sudo chmod +x ./tests/docker_tests.sh  
   - sudo apt-get update
   - sudo apt-get install -y maven
