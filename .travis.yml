@@ -8,7 +8,7 @@ services:
 env:
   global:
     - COMMIT=${TRAVIS_COMMIT::8}
-    - REPO=zeroc0d3/centos-base
+    - REPO=centos-base
     - CGO_ENABLED=0
     - GOOS=linux
     - GOARCH=amd64  
@@ -19,11 +19,5 @@ before_install:
   - echo 'DOCKER_OPTS="-H tcp://127.0.0.1:2375 -H unix:///var/run/docker.sock -s devicemapper"' | sudo tee /etc/default/docker > /dev/null
   - sudo service docker restart
   - sleep 5
-  - sudo docker pull zeroc0d3/centos-base
 
-after_success:
-  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-  - export REPO=zeroc0d3/centos-base
-  - docker tag $REPO:$COMMIT $REPO:$TAG
-  - docker tag $REPO:$COMMIT $REPO:$TRAVIS_BUILD_NUMBER
-  - docker push $REPO
+script: ./tests/docker_tests.sh  
