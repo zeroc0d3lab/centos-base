@@ -1,5 +1,5 @@
 FROM centos:7.3.1611
-MAINTAINER ZeroC0D3 Team <zeroc0d3.0912@gmail.com>
+MAINTAINER ZeroC0D3 Team <zeroc0d3.team@gmail.com>
 
 ENV S6OVERLAY_VERSION=v1.19.1.1 \
     S6_BEHAVIOUR_IF_STAGE2_FAILS=1 \
