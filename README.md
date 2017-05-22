@@ -4,4 +4,4 @@
 Docker CentOS for multi purpose applications
 
 ## License
-MIT License
+GNU Public License v2
