@@ -4,4 +4,4 @@
 Docker CentOS for multi purpose applications
 
 ## License
-GNU Public License v2
+GNU General Public License v2
