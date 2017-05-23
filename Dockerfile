@@ -9,17 +9,17 @@ ENV S6OVERLAY_VERSION=v1.19.1.1 \
     LANGUAGE=en_US.UTF-8 \
     TERM=xterm
 
-## FIND FASTEST REPO & UPDATE REPO ##
+## FIND FASTEST REPO & INSTALL CORE PACKAGES ##
 RUN yum makecache fast \
-    && yum provides '*/applydeltarpm' 
-
-## INSTALL BASE DEPENDENCY ##
-RUN yum -y update \
+    && yum provides '*/applydeltarpm' \
     && yum -y install deltarpm \
             bash-completion \
             epel-release \
             initscripts
-            iproute \
+
+## UPDATE & INSTALL BASE DEPENDENCY ##
+RUN yum -y update \
+    && yum -y install iproute \
             open-ssl \
             net-tools \
             gawk \
