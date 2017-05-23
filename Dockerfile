@@ -35,7 +35,7 @@ RUN yum -y update \
             sudo \
             which \
 
-    && curl -sSL https://github.com/just-containers/s6-overlay/releases/download/${S6OVERLAY_VERSION}/s6-overlay-amd64.tar.gz | tar xz -C / \
+    && curl -sSL https://github.com/just-containers/s6-overlay/releases/download/${S6OVERLAY_VERSION}/s6-overlay-amd64.tar.gz | tar xz -C /
 
 ## CLEAN UP ALL CACHE ##
 RUN yum clean all
