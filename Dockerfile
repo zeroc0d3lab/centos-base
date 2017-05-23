@@ -11,11 +11,10 @@ ENV S6OVERLAY_VERSION=v1.19.1.1 \
 
 ## FIND FASTEST REPO & UPDATE REPO ##
 RUN yum makecache fast \
-    && yum -y update 
+    && yum provides '*/applydeltarpm' 
 
 ## INSTALL BASE DEPENDENCY ##
-RUN yum makecache fast \
-    && yum provides '*/applydeltarpm' \
+RUN yum -y update \
     && yum -y install deltarpm \
             bash-completion \
             epel-release \
