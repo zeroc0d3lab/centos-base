@@ -24,7 +24,8 @@ RUN yum -y update \
             net-tools \
             gawk \
             bind-utils \
-            bash ca-certificates \
+            bash \
+            ca-certificates \
             curl \
             wget \
             tar \
@@ -35,10 +36,10 @@ RUN yum -y update \
             sudo \
             which \
 
-    && curl -sSL https://github.com/just-containers/s6-overlay/releases/download/${S6OVERLAY_VERSION}/s6-overlay-amd64.tar.gz | tar xz -C /
+    && curl -sSL https://github.com/just-containers/s6-overlay/releases/download/${S6OVERLAY_VERSION}/s6-overlay-amd64.tar.gz | tar xz -C / \
 
 ## CLEAN UP ALL CACHE ##
-RUN yum clean all
+    && yum clean all
 
 ## SYMLINK bash & sh (inside container) ##
 RUN ["ln", "-s", "/usr/bin/bash", "/bin/bash"]
