@@ -35,6 +35,8 @@ RUN yum -y update \
             python-pip \
             sudo \
             which \
+            mc \
+            nmap \
 
     && curl -sSL https://github.com/just-containers/s6-overlay/releases/download/${S6OVERLAY_VERSION}/s6-overlay-amd64.tar.gz | tar xz -C / \
 
