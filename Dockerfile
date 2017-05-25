@@ -21,6 +21,7 @@ RUN yum makecache fast \
 RUN yum -y update \
     && yum -y install iproute \
             open-ssl \
+            openssl-libs \
             net-tools \
             gawk \
             bind-utils \
@@ -30,6 +31,7 @@ RUN yum -y update \
             wget \
             tar \
             ansible \
+            openssh \
             openssh-clients \
             openssh-server \
             python-pip \
@@ -37,6 +39,7 @@ RUN yum -y update \
             which \
             mc \
             nmap \
+            supervisor \
 
     && curl -sSL https://github.com/just-containers/s6-overlay/releases/download/${S6OVERLAY_VERSION}/s6-overlay-amd64.tar.gz | tar xz -C / \
 
@@ -49,13 +52,3 @@ RUN ["ln", "-s", "/usr/bin/sh", "/bin/sh"]
 
 ## FINALIZE (reconfigure) ##
 COPY rootfs/ /
-
-## SET PORT ##
-EXPOSE 22
-
-## SET VOLUME ##
-VOLUME ["/sys/fs/cgroup"]
-
-## RUN INIT ##
-CMD ["/usr/sbin/init"]
-
