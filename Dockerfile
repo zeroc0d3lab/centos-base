@@ -46,6 +46,9 @@ RUN yum -y update \
 ## CLEAN UP ALL CACHE ##
     && yum clean all
 
+## RUN SETUP LOCALE ##
+RUN localedef -i en_US -f UTF-8 en_US.UTF-8
+
 ## SYMLINK bash & sh (inside container) ##
 RUN ["ln", "-s", "/usr/bin/bash", "/bin/bash"]
 RUN ["ln", "-s", "/usr/bin/sh", "/bin/sh"]
