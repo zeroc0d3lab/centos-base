@@ -2,7 +2,8 @@ version: '2'
 
 services:
   base:
-    image: zeroc0d3lab/centos-base    
+    build:
+      context: .
     volumes:
       - /etc/localtime:/etc/localtime:ro
     environment:
