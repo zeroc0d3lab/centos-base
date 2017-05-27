@@ -1,7 +1,9 @@
 FROM centos:7.3.1611
 MAINTAINER ZeroC0D3 Team <zeroc0d3.team@gmail.com>
 
-## SET ENVIRONMENT ##
+#-----------------------------------------------------------------------------
+# Set Environment
+#-----------------------------------------------------------------------------
 ENV S6OVERLAY_VERSION=v1.19.1.1 \
     S6_BEHAVIOUR_IF_STAGE2_FAILS=1 \
     LANG=en_US.UTF-8 \
@@ -9,15 +11,33 @@ ENV S6OVERLAY_VERSION=v1.19.1.1 \
     LANGUAGE=en_US.UTF-8 \
     TERM=xterm
 
-## FIND FASTEST REPO & INSTALL CORE PACKAGES ##
+#-----------------------------------------------------------------------------
+# Base Install + Import the RPM GPG keys for Repositories
+#-----------------------------------------------------------------------------
+RUN rpm --rebuilddb \
+	&& rpm --import \
+		http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-7 \
+	&& rpm --import \
+		https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7 \
+	&& rpm --import \
+		https://dl.iuscommunity.org/pub/ius/IUS-COMMUNITY-GPG-KEY
+
+#-----------------------------------------------------------------------------
+# Install Core Packages
+#-----------------------------------------------------------------------------
 RUN yum makecache fast \
     && yum provides '*/applydeltarpm' \
-    && yum -y install deltarpm \
+    && yum -y install \
+              --setopt=tsflags=nodocs \
+              --disableplugin=fastestmirror \
+            deltarpm \
             bash-completion \
             epel-release \
             initscripts
 
-## UPDATE & INSTALL BASE DEPENDENCY ##
+#-----------------------------------------------------------------------------
+# Update & Install Base Dependency
+#-----------------------------------------------------------------------------
 RUN yum -y update \
     && yum -y install iproute \
             open-ssl \
@@ -43,15 +63,23 @@ RUN yum -y update \
 
     && curl -sSL https://github.com/just-containers/s6-overlay/releases/download/${S6OVERLAY_VERSION}/s6-overlay-amd64.tar.gz | tar xz -C / \
 
-## CLEAN UP ALL CACHE ##
+#-----------------------------------------------------------------------------
+# Clean Up All Cache
+#-----------------------------------------------------------------------------
     && yum clean all
 
-## SETUP LOCALE ##
+#-----------------------------------------------------------------------------
+# Setup Locale UTF-8
+#-----------------------------------------------------------------------------
 RUN ["/usr/bin/localedef", "-i", "en_US", "-f", "UTF-8", "en_US.UTF-8"]
 
-## SYMLINK bash & sh (inside container) ##
+#-----------------------------------------------------------------------------
+# Symlink bash & sh (Inside Container)
+#-----------------------------------------------------------------------------
 RUN ["ln", "-s", "/usr/bin/bash", "/bin/bash"]
 RUN ["ln", "-s", "/usr/bin/sh", "/bin/sh"]
 
-## FINALIZE (reconfigure) ##
+#-----------------------------------------------------------------------------
+# Finalize (reconfigure)
+#-----------------------------------------------------------------------------
 COPY rootfs/ /
