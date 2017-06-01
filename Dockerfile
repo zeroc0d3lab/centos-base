@@ -15,12 +15,12 @@ ENV S6OVERLAY_VERSION=v1.19.1.1 \
 # Base Install + Import the RPM GPG keys for Repositories
 #-----------------------------------------------------------------------------
 RUN rpm --rebuilddb \
-	&& rpm --import \
-		http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-7 \
-	&& rpm --import \
-		https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7 \
-	&& rpm --import \
-		https://dl.iuscommunity.org/pub/ius/IUS-COMMUNITY-GPG-KEY
+	  && rpm --import \
+		   http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-7 \
+	  && rpm --import \
+		   https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7 \
+	  && rpm --import \
+		   https://dl.iuscommunity.org/pub/ius/IUS-COMMUNITY-GPG-KEY
 
 #-----------------------------------------------------------------------------
 # Install Core Packages
