@@ -33,7 +33,8 @@ RUN yum makecache fast \
             deltarpm \
             bash-completion \
             epel-release \
-            initscripts
+            initscripts \
+            sudo
 
 #-----------------------------------------------------------------------------
 # Update & Install Base Dependency
@@ -60,6 +61,7 @@ RUN yum -y update \
             mc \
             nmap \
             supervisor \
+            xz \
 
     && curl -sSL https://github.com/just-containers/s6-overlay/releases/download/${S6OVERLAY_VERSION}/s6-overlay-amd64.tar.gz | tar xz -C / \
 
