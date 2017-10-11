@@ -2,12 +2,12 @@ version: '2'
 
 services:
   base:
-    image: zeroc0d3lab/centos-base    
+    image: zeroc0d3lab/centos-base
     volumes:
       - /etc/localtime:/etc/localtime:ro
     environment:
-      - S6OVERLAY_VERSION=${S6OVERLAY_VERSION} 
-      - S6_BEHAVIOUR_IF_STAGE2_FAILS=${S6_BEHAVIOUR_IF_STAGE2_FAILS} 
+      - S6OVERLAY_VERSION=${S6OVERLAY_VERSION}
+      - S6_BEHAVIOUR_IF_STAGE2_FAILS=${S6_BEHAVIOUR_IF_STAGE2_FAILS}
       - LANG=${LANG}
       - LC_ALL=${LC_ALL}
       - LANGUAGE=${LANGUAGE}
