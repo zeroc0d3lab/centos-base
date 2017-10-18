@@ -4,7 +4,7 @@ MAINTAINER ZeroC0D3 Team <zeroc0d3.team@gmail.com>
 #-----------------------------------------------------------------------------
 # Set Environment
 #-----------------------------------------------------------------------------
-ENV S6OVERLAY_VERSION=v1.20.0.0 \
+ENV S6OVERLAY_VERSION=v1.21.0.2 \
     S6_BEHAVIOUR_IF_STAGE2_FAILS=1 \
     LANG=en_US.UTF-8 \
     LC_ALL=en_US.UTF-8 \
