@@ -1,10 +1,12 @@
-FROM centos:7.3.1611
+ARG CENTOS_VERSION=7.3.1611
+FROM centos:${CENTOS_VERSION}
+
 MAINTAINER ZeroC0D3 Team <zeroc0d3.team@gmail.com>
 
 #-----------------------------------------------------------------------------
 # Set Environment
 #-----------------------------------------------------------------------------
-ENV S6OVERLAY_VERSION=1.21.0.2 \
+ENV S6OVERLAY_VERSION=1.21.4.0 \
     S6_BEHAVIOUR_IF_STAGE2_FAILS=1 \
     LANG=en_US.UTF-8 \
     LC_ALL=en_US.UTF-8 \
